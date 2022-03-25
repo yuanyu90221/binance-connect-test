@@ -12,6 +12,8 @@ const callbacks = {
   message: (data) => client.logger.log(data),
 };
 
-const aggTrade = client.aggTradeWS('bnbusdt', callbacks);
+// const aggTrade = client.aggTradeWS('bnbusdt', callbacks);
 
-setTimeout(() => client.unsubscribe(aggTrade), 3000)
+// setTimeout(() => client.unsubscribe(aggTrade), 3000)
+const combineStreams = client.combinedStreams(['bnbusdt@aggTrade', 'bnbusdt@depth5@100ms'], callbacks)
+setTimeout(() => client.unsubscribe(combineStreams), 3000)
